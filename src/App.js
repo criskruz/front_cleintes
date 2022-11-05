@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./layout/Layout";
+import Inicio from "./paginas/Inicio";
+import NuevoCliente from "./paginas/NuevoCliente";
+import EditarCliente from "./paginas/EditarCliente";
+import VerCliente from "./paginas/VerCliente";
+import IniciarSesion from "./layout/IniciarSesion";
+import Sesion from "./paginas/Sesion";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          {/* <Route path="/" element={<IniciarSesion />}>
+            <Route index element={<Sesion />} />
+          </Route> */}
+          <Route path="/clientes" element={<Layout />}>
+            <Route index element={<Inicio />} />
+            <Route path="nuevo" element={<NuevoCliente />} />
+            <Route path="editar/:id" element={<EditarCliente />} />
+            <Route path=":id" element={<VerCliente />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
 export default App;
+
